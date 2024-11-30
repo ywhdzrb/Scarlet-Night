@@ -4,10 +4,11 @@ from log import log
 class WIN:
     def __init__(self):
         pg.init()
-        self.screen = pg.display.set_mode((800, 600))
+        self.screen = pg.display.set_mode((800, 500))
         self.clock = pg.time.Clock()
         self.running = True
         self.fps = 60
+        log("Init")
     
     def run(self):
         while self.running:
