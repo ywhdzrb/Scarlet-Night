@@ -1,26 +1,25 @@
-import pygame
+import pygame as pg
+from log import log
 
-# pygame setup
-pygame.init()
-screen = pygame.display.set_mode((1280, 720))
-clock = pygame.time.Clock()
-running = True
+class WIN:
+    def __init__(self):
+        pg.init()
+        self.screen = pg.display.set_mode((800, 600))
+        self.clock = pg.time.Clock()
+        self.running = True
+        self.fps = 60
+    
+    def run(self):
+        while self.running:
+            self.clock.tick(self.fps)
+            self.screen.fill((0, 0, 0))
+            for event in pg.event.get():
+                if event.type == pg.QUIT:
+                    self.running = False
+            pg.display.flip()
+        pg.quit()
+        log("Quit")
 
-while running:
-    # poll for events
-    # pygame.QUIT event means the user clicked X to close your window
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-
-    # fill the screen with a color to wipe away anything from last frame
-    screen.fill("purple")
-
-    # RENDER YOUR GAME HERE
-
-    # flip() the display to put your work on screen
-    pygame.display.flip()
-
-    clock.tick(60)  # limits FPS to 60
-
-pygame.quit()
+if __name__ == "__main__":
+    win = WIN()
+    win.run()
